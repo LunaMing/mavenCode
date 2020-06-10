@@ -15,22 +15,22 @@ import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 
-public class SingleFileNameReader extends RecordReader<Text, BytesWritable>{
+public class SingleFileNameReader extends RecordReader<Text, BytesWritable> {
     private FileSplit fileSplit;
     @SuppressWarnings("unuser")
     private Configuration conf;
-    private boolean processed=false;
-    private Text key=null;
-    private BytesWritable value=null;
-    private FSDataInputStream fis=null;
+    private boolean processed = false;
+    private Text key = null;
+    private BytesWritable value = null;
+    private FSDataInputStream fis = null;
 
-    public SingleFileNameReader(FileSplit fileSplit,Configuration conf) {
-        this.fileSplit=fileSplit;
-        this.conf=conf;
+    public SingleFileNameReader(FileSplit fileSplit, Configuration conf) {
+        this.fileSplit = fileSplit;
+        this.conf = conf;
     }
 
     public SingleFileNameReader(org.apache.hadoop.mapreduce.lib.input.FileSplit split, Configuration configuration) {
-        
+
     }
 
     @Override
@@ -54,41 +54,41 @@ public class SingleFileNameReader extends RecordReader<Text, BytesWritable>{
     @Override
     public float getProgress() throws IOException, InterruptedException {
         // TODO Auto-generated method stub
-        return processed?1.0f:0.0f;
+        return processed ? 1.0f : 0.0f;
     }
 
     @Override
     public void initialize(InputSplit arg0, TaskAttemptContext arg1) throws IOException, InterruptedException {
         // TODO Auto-generated method stub
-        fileSplit=(FileSplit)arg0;
-        Configuration job=arg1.getConfiguration();
-        Path file=fileSplit.getPath();
-        FileSystem fs=file.getFileSystem(job);
-        fis=fs.open(file);
+        fileSplit = (FileSplit) arg0;
+        Configuration job = arg1.getConfiguration();
+        Path file = fileSplit.getPath();
+        FileSystem fs = file.getFileSystem(job);
+        fis = fs.open(file);
 
     }
 
     @Override
     public boolean nextKeyValue() throws IOException, InterruptedException {
         // TODO Auto-generated method stub
-        if(key==null)
-            key=new Text();
-        if(value==null)
-            value=new BytesWritable();
-        if(!processed) {
-            byte[] content=new byte[(int)fileSplit.getLength()];
-            Path file=fileSplit.getPath();
+        if (key == null)
+            key = new Text();
+        if (value == null)
+            value = new BytesWritable();
+        if (!processed) {
+            byte[] content = new byte[(int) fileSplit.getLength()];
+            Path file = fileSplit.getPath();
             System.out.println(file.getName());
             key.set(file.getName());
             try {
-                IOUtils.readFully(fis, content,0,content.length);
+                IOUtils.readFully(fis, content, 0, content.length);
                 value.set(new BytesWritable(content));
-            }catch(IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 IOUtils.closeStream(fis);
             }
-            processed=true;
+            processed = true;
             return true;
         }
         return false;

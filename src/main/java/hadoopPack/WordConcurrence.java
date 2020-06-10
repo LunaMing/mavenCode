@@ -19,8 +19,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
-
 /**
  *  *统计在若干篇文档中两个英文单词在一定窗口内同时出现的次数
  *  * 如何计算二个单词出现的频率,使用pairs算法,该算法的流程就是:

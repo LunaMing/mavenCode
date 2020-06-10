@@ -18,7 +18,7 @@ import java.io.IOException;
 public class WholeFileInputFormat extends FileInputFormat<Text, BytesWritable> {
     @Override
     protected boolean isSplitable(JobContext context, Path filename) {
-// TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         return false;
     }
 
