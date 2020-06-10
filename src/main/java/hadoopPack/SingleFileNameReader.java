@@ -29,6 +29,10 @@ public class SingleFileNameReader extends RecordReader<Text, BytesWritable>{
         this.conf=conf;
     }
 
+    public SingleFileNameReader(org.apache.hadoop.mapreduce.lib.input.FileSplit split, Configuration configuration) {
+        
+    }
+
     @Override
     public void close() throws IOException {
         // TODO Auto-generated method stub
