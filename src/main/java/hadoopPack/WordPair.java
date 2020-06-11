@@ -10,10 +10,6 @@ public class WordPair implements WritableComparable<WordPair> {
     private String wordA;
     private String wordB;
 
-    public WordPair() {
-
-    }
-
     public WordPair(String wordA, String wordB) {
         this.wordA = wordA;
         this.wordB = wordB;
@@ -62,13 +58,11 @@ public class WordPair implements WritableComparable<WordPair> {
         if (!(o instanceof WordPair))
             return false;
         WordPair w = (WordPair) o;
-        if ((this.wordA.equals(w.wordA) && this.wordA.equals(w.wordB))
-                || (this.wordB.contentEquals(w.wordA) && this.wordA.contentEquals(w.wordB)))
-            return true;
-        return false;
+        return (this.wordA.equals(w.wordA) && this.wordA.equals(w.wordB))
+                || (this.wordB.contentEquals(w.wordA) && this.wordA.contentEquals(w.wordB));
     }
 
-    public int haseCode() {
+    public int hashCode() {
         return (wordA.hashCode() + wordB.hashCode()) * 17;
     }
 
