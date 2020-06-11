@@ -26,8 +26,7 @@ public class WholeFileInputFormat extends FileInputFormat<Text, BytesWritable> {
     public RecordReader<Text, BytesWritable> createRecordReader(
             InputSplit split, TaskAttemptContext context) {
         // TODO Auto-generated method stub
-        return new SingleFileNameReader((FileSplit) split, context
-                .getConfiguration());
+        return new SingleFileNameReader((FileSplit) split);
 
     }
 }

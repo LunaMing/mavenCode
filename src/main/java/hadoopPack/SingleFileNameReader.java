@@ -10,55 +10,48 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.FileSplit;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
+import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 public class SingleFileNameReader extends RecordReader<Text, BytesWritable> {
     private FileSplit fileSplit;
-    @SuppressWarnings("unuser")
-    private Configuration conf;
     private boolean processed = false;
     private Text key = null;
     private BytesWritable value = null;
     private FSDataInputStream fis = null;
 
-    public SingleFileNameReader(FileSplit fileSplit, Configuration conf) {
+    public SingleFileNameReader(FileSplit fileSplit) {
         this.fileSplit = fileSplit;
-        this.conf = conf;
-    }
-
-    public SingleFileNameReader(org.apache.hadoop.mapreduce.lib.input.FileSplit split, Configuration configuration) {
-
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public Text getCurrentKey() throws IOException, InterruptedException {
+    public Text getCurrentKey() {
         // TODO Auto-generated method stub
         return key;
     }
 
     @Override
-    public BytesWritable getCurrentValue() throws IOException, InterruptedException {
+    public BytesWritable getCurrentValue() {
         // TODO Auto-generated method stub
         return value;
     }
 
     @Override
-    public float getProgress() throws IOException, InterruptedException {
+    public float getProgress() {
         // TODO Auto-generated method stub
         return processed ? 1.0f : 0.0f;
     }
 
     @Override
-    public void initialize(InputSplit arg0, TaskAttemptContext arg1) throws IOException, InterruptedException {
+    public void initialize(InputSplit arg0, TaskAttemptContext arg1) throws IOException {
         // TODO Auto-generated method stub
         fileSplit = (FileSplit) arg0;
         Configuration job = arg1.getConfiguration();
@@ -69,7 +62,7 @@ public class SingleFileNameReader extends RecordReader<Text, BytesWritable> {
     }
 
     @Override
-    public boolean nextKeyValue() throws IOException, InterruptedException {
+    public boolean nextKeyValue() {
         // TODO Auto-generated method stub
         if (key == null)
             key = new Text();
