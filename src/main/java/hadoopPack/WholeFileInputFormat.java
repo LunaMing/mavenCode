@@ -10,7 +10,6 @@ import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
-import java.io.IOException;
 
 /*
  *重写FileInputFormat，将文件不分割，读入到一个map 
@@ -25,10 +24,8 @@ public class WholeFileInputFormat extends FileInputFormat<Text, BytesWritable> {
 
     @Override
     public RecordReader<Text, BytesWritable> createRecordReader(
-            InputSplit split, TaskAttemptContext context) throws IOException,
-            InterruptedException {
+            InputSplit split, TaskAttemptContext context) {
         // TODO Auto-generated method stub
-        // return null;
         return new SingleFileNameReader((FileSplit) split, context
                 .getConfiguration());
 
