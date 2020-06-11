@@ -32,22 +32,20 @@ import java.util.regex.Pattern;
  *  
  */
 public class WordConcurrence {
-    private static int MAX_WINDOW = 20;// 单词同现的最大窗口大小
-    private static String wordRegex = "([a-zA-Z]{1,})";// 仅仅匹配由字母组成的简单英文单词
-    private static Pattern wordPattern = Pattern.compile(wordRegex);// 用于识别英语单词(带连字符-)
-    private static IntWritable one = new IntWritable(1);
-    private static WholeFileInputFormat wholeFileInputFormat;
+    private static final int MAX_WINDOW = 20;// 单词同现的最大窗口大小
+    private static final String wordRegex = "([a-zA-Z]+)";// 仅仅匹配由字母组成的简单英文单词
+    private static final Pattern wordPattern = Pattern.compile(wordRegex);// 用于识别英语单词(带连字符-)
+    private static final IntWritable one = new IntWritable(1);
 
 
     public static class WordConcurrenceMapper extends
             Mapper<Text, BytesWritable, WordPair, IntWritable> {
         private int windowSize;
-        private Queue<String> windowQueue = new LinkedList<String>();
+        private final Queue<String> windowQueue = new LinkedList<String>();
 
 
         @Override
-        protected void setup(Context context) throws IOException,
-                InterruptedException {
+        protected void setup(Context context) {
             windowSize = Math.min(context.getConfiguration()
                     .getInt("window", 2), MAX_WINDOW);
         }
