@@ -55,6 +55,7 @@ public class WordPair implements WritableComparable<WordPair> {
 
     @Override
     public boolean equals(Object o) {
+        // 无序对，不用考虑顺序
         if (!(o instanceof WordPair))
             return false;
         WordPair w = (WordPair) o;

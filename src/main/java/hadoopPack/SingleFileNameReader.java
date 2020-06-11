@@ -81,9 +81,9 @@ public class SingleFileNameReader extends RecordReader<Text, BytesWritable> {
                 IOUtils.closeStream(fis);
             }
             processed = true;
-            return true;
+            return true;// return true表示这次inputformat还没有结束，会有下一对keyvalue产生
         }
-        return false;
+        return false;// return false表示这次inputformat结束了
     }
 
 
