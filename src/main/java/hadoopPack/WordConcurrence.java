@@ -20,15 +20,15 @@ import java.util.regex.Pattern;
 
 
 /**
- *  *统计在若干篇文档中两个英文单词在一定窗口内同时出现的次数
- *  * 如何计算二个单词出现的频率,使用pairs算法,该算法的流程就是:
- *  * 选择一个窗口的大小,使用队列,将队列的第一个值与后面的值分别成为一个
- *  *  e,of 1
- *  * we,on 1 we,said 1 we,should 2 we,stay 1 we,that 1 we,the 2 we,them 1 we,us 1
- *  * we,which 1 which,Junk 1 which,a 1 which,assures 1 which,food 1 which,is 1
- *  * which,necessary 1 which,nutritions 1 which,the 1 which,us 1 who,at 1 who,ate
- *  * 1 who,enjoy 1 who,main 1 who,meal 1 who,midday 1 who,now 1 who,their 1
- *  * who,traditionally
+ *  统计在若干篇文档中两个英文单词在一定窗口内同时出现的次数
+ *  如何计算二个单词出现的频率,使用pairs算法,该算法的流程就是:
+ *  选择一个窗口的大小,使用队列,将队列的第一个值与后面的值分别成为一个
+ *    e,of 1
+ *   we,on 1 we,said 1 we,should 2 we,stay 1 we,that 1 we,the 2 we,them 1 we,us 1
+ *   we,which 1 which,Junk 1 which,a 1 which,assures 1 which,food 1 which,is 1
+ *   which,necessary 1 which,nutritions 1 which,the 1 which,us 1 who,at 1 who,ate
+ *   1 who,enjoy 1 who,main 1 who,meal 1 who,midday 1 who,now 1 who,their 1
+ *   who,traditionally
  *  
  */
 public class WordConcurrence {

@@ -11,9 +11,10 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 
-/*
- *重写FileInputFormat，将文件不分割，读入到一个map 
- * */
+/**
+ *  重写FileInputFormat，将文件不分割，读入到一个map 
+ *  
+ */
 public class WholeFileInputFormat extends FileInputFormat<Text, BytesWritable> {
     @Override
     protected boolean isSplitable(JobContext context, Path filename) {
