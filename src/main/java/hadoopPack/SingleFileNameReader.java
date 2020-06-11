@@ -1,7 +1,6 @@
 package hadoopPack;
 
 import java.io.IOException;
-//import java.nio.file.Path;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
